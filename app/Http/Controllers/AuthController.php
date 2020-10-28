@@ -23,14 +23,17 @@ class AuthController extends Controller
                 $user = $this->guard()->user();
 
                 return $user;
+            } 
+            else 
+            {
+                return response()->json(['message' => ['Ongeldige gebruikersnaam / wachtwoord combinatie']], 401);
             }
         } 
         catch (\Exception $e) 
         {
             return response()->json(['message' => 'Fout bij het genereren van token: ' . $e->getMessage()], 500);
         }
-
-        return response()->json(['message' => ['Ongeldige gebruikersnaam / wachtwoord combinatie']], 401);
+        
     }
 
     /**
@@ -70,6 +73,6 @@ class AuthController extends Controller
      */
     public function guard()
     {
-        return Auth::guard('sanctum');
+        return Auth::guard('web');
     }
 }
