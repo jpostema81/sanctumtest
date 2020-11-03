@@ -20,6 +20,12 @@ Route::get('/', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/me', [AuthController::class, 'me']);
+
+Route::middleware('auth:web')->get('/webuser', function (Request $request) {
+    return "test"; //$request->user();
+});
+
 
 Route::get('/authentication_error', function () {
     echo "Authenticatie fout";

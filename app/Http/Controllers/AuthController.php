@@ -36,6 +36,10 @@ class AuthController extends Controller
         
     }
 
+    public function me(Request $request) {
+        return Auth::user();
+    }
+
     /**
      * See: https://github.com/laravel/airlock#authenticating-mobile-applications.
      * @param Request $request
